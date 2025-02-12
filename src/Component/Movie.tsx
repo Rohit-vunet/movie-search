@@ -1,6 +1,5 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState} from 'react';
 import "./Movie.css";
-
 
 interface MovieSearch {
     Response: string;
@@ -10,8 +9,8 @@ interface MovieSearch {
     imdbRating: string;
     Plot: string;
 }
-
 const Movie = () => {
+    const[loading,setloading] = useState(false)
     const [title, setTitle] = useState("");
     const [error, setError] = useState("");
     const [data, setUserData] = useState<MovieSearch | null>(null);
@@ -19,15 +18,14 @@ const Movie = () => {
     const fetchUser = async (user: string) => {
         setError("");
         setUserData(null);
-
-    
         try {
-            // const response = await fetch(`http://www.omdbapi.com/?t=${user}&apikey=e36bf94a`);
-            const response = await fetch (`http://www.omdbapi.com/?i=tt3896198&apikey=5f88efed`);
+            setloading(true);
+            const response = await fetch(`http://www.omdbapi.com/?t=${user}&apikey=e36bf94a`);
             if (!response.ok) {
                 setError("Movie not found");
                 return;
             }
+
             const data: MovieSearch = await response.json();
             if (data.Response === "False") {
                 setError("Movie not found");
@@ -36,9 +34,11 @@ const Movie = () => {
             setUserData(data);
         } catch{
             setError("Movie Name not found")
+            setloading(true);
         }
     };
-    
+
+
     return (
         <div className='MovieSearch'>
             <h1 className='MovieTitle'>Movie Search</h1>
@@ -58,8 +58,8 @@ const Movie = () => {
             {data && (
                 <div className='Poster'>
                     <img src={data.Poster} alt={data.Title} />
+                    <h2>{data.Year}</h2>
                     <h2>{data.Title}</h2>
-                    <h2>({data.Year})</h2>
                     <p>IMDb Rating: {data.imdbRating}</p>
                     <p>{data.Plot}</p>
 
