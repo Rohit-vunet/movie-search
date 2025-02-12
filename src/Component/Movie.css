@@ -1,0 +1,31 @@
+*{
+    margin:0;
+    padding:0
+}
+body {
+    background: linear-gradient(to right, #00c6ff, #0072ff);
+    font-family: Arial, sans-serif;
+    color: white;
+}
+
+.MovieTitle{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size:30px;
+    color:black;
+    padding:10px; 
+    margin-top:10px;  
+
+}
+.SearchContainer{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   gap:10px;
+}
+.input{
+    border:2px solid black;
+    border-radius:5px;
+    padding:2px;
+}
