@@ -10,7 +10,7 @@ interface MovieSearch {
     Plot: string;
 }
 const Movie = () => {
-    const[loading,setloading] = useState(false)
+    const[loading,setloading] = useState(false);
     const [title, setTitle] = useState("");
     const [error, setError] = useState("");
     const [data, setUserData] = useState<MovieSearch | null>(null);
@@ -25,7 +25,6 @@ const Movie = () => {
                 setError("Movie not found");
                 return;
             }
-
             const data: MovieSearch = await response.json();
             if (data.Response === "False") {
                 setError("Movie not found");
@@ -37,7 +36,6 @@ const Movie = () => {
             setloading(true);
         }
     };
-
 
     return (
         <div className='MovieSearch'>
