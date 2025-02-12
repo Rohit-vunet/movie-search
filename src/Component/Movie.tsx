@@ -41,7 +41,6 @@ const Movie = () => {
     
     return (
         <div className='MovieSearch'>
-
             <h1 className='MovieTitle'>Movie Search</h1>
             <div className='SearchContainer'>
                 <input
